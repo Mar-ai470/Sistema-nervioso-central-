@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#172554">
+<title>Explora el Sistema Nervioso Central</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--sky:#e0f2fe;--purple:#7c3aed;--pink:#fce7f3;--mint:#dcfce7;--ink:#1f2937;--muted:#64748b;--paper:#f7f9ff;--white:#fff;--line:#e2e8f0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+header{background:linear-gradient(125deg,#172554,#4338ca 60%,#7c3aed);color:white;padding:28px 18px 34px}
+.top{max-width:1080px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;font-weight:800;color:#c7d2fe}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.12;margin:8px 0 12px}.hero p{max-width:720px;color:#e0e7ff;font-size:1.05rem;margin:0}
+nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}nav a{color:white;text-decoration:none;border:1px solid #ffffff66;background:#ffffff18;padding:8px 13px;border-radius:999px;font-size:.92rem}nav a:hover{background:#ffffff35}
+main{max-width:1080px;margin:24px auto;padding:0 16px 55px}.section{background:white;border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,30px);margin:18px 0;box-shadow:0 8px 28px #1e3a8a0b}
+.kicker{font-size:.76rem;font-weight:800;letter-spacing:.12em;color:var(--purple);text-transform:uppercase}
+h2{color:var(--navy);font-size:clamp(1.45rem,3vw,2rem);margin:4px 0 12px}h3{margin:0 0 6px;color:var(--navy)}p{margin:8px 0}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.info-card{border:1px solid var(--line);border-radius:17px;padding:17px;background:#fff;transition:.2s}.info-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px #1e3a8a12}
+.emoji{font-size:2rem;display:block;margin-bottom:6px}.tag{display:inline-block;font-size:.75rem;font-weight:700;border-radius:99px;padding:3px 9px;background:var(--sky);color:#075985;margin-top:7px}
+.callout{background:#eef2ff;border-left:4px solid var(--blue);padding:13px 16px;border-radius:10px;margin:16px 0}
+.diagram-wrap{display:grid;grid-template-columns:minmax(220px, .9fr) minmax(240px,1.1fr);gap:22px;align-items:center}
+.diagram{background:linear-gradient(145deg,#eff6ff,#f5f3ff);border-radius:18px;padding:12px;text-align:center}
+.diagram svg{width:100%;max-height:360px}.part-btn,.action{border:0;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer;background:var(--blue);color:white;font-size:.95rem}.part-btn{display:block;width:100%;margin:7px 0;text-align:left;background:white;color:var(--navy);border:1px solid #c7d2fe}.part-btn:hover,.part-btn.active{background:#dbeafe;border-color:var(--blue)}
+.detail-panel{background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:18px;min-height:180px}.detail-panel h3{font-size:1.25rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:15px}.step{padding:14px;border-radius:14px;background:#f8fafc;border:1px solid var(--line)}.step strong{display:block;color:var(--purple)}
+.flash{perspective:900px;min-height:155px;cursor:pointer}.flash-inner{position:relative;min-height:155px;transition:transform .55s;transform-style:preserve-3d}.flash.flipped .flash-inner{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:18px;display:flex;flex-direction:column;justify-content:center;border:1px solid #ddd6fe;background:#f5f3ff}.back{transform:rotateY(180deg);background:#ecfeff;border-color:#a5f3fc}.face small{color:var(--muted)}
+.activity{background:#f8fafc;border:1px solid var(--line);padding:16px;border-radius:15px;margin:12px 0}.choices{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.choices button{background:white;border:1px solid #cbd5e1;color:var(--ink);border-radius:10px;padding:9px 12px;cursor:pointer}.choices button:hover{border-color:var(--blue);background:#eff6ff}.feedback{font-weight:700;margin-top:9px;min-height:24px}.quiz-q{padding:16px 0;border-bottom:1px solid var(--line)}.quiz-q:last-child{border:0}.quiz-q p{font-weight:700;margin:0 0 8px}.option{display:flex;gap:9px;align-items:flex-start;padding:7px 9px;border-radius:9px;cursor:pointer}.option:hover{background:#f1f5f9}.option input{margin-top:5px;accent-color:var(--blue)}
+.quiz-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.secondary{background:#e2e8f0;color:var(--navy)}#quizResult{margin-top:16px;padding:15px;border-radius:13px;background:#eff6ff;display:none}.progress{height:9px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin:10px 0}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#2563eb,#8b5cf6);transition:width .3s}
+footer{text-align:center;color:var(--muted);padding:20px}
+@media(max-width:680px){.diagram-wrap{grid-template-columns:1fr}.section{border-radius:17px}.hero p{font-size:1rem}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top hero">
+  <div class="eyebrow">Mini laboratorio de biología · Aprende explorando</div>
+  <h1>🧠 Explora el Sistema Nervioso Central</h1>
+  <p>Conoce cómo el cerebro y la médula espinal reciben información, la procesan y coordinan las respuestas del cuerpo. ¡Explora, juega y comprueba lo que aprendiste!</p>
+  <nav>
+   <a href="#aprende">📘 Aprende</a><a href="#diagrama">🧩 Diagrama</a><a href="#neuronas">⚡ Neuronas</a><a href="#actividades">🎮 Actividades</a><a href="#quiz">🎯 Quiz</a>
+  </nav>
+ </div>
+</header>
+<main>
+<section class="section" id="aprende">
+ <div class="kicker">01 · Conoce el tema</div><h2>¿Qué es el sistema nervioso central?</h2>
+ <p>El <strong>sistema nervioso central (SNC)</strong> es la parte del sistema nervioso que recibe y procesa información. Está formado por el <strong>encéfalo</strong> y la <strong>médula espinal</strong>. Funciona como un centro de control: interpreta señales y ayuda a coordinar movimientos, pensamientos, memoria y muchas funciones del organismo.</p>
+ <div class="callout"><strong>Idea importante:</strong> el encéfalo está protegido por el cráneo y la médula espinal por la columna vertebral. Ambos cuentan además con membranas protectoras llamadas meninges.</div>
+ <div class="grid">
+  <article class="info-card"><span class="emoji">🧠</span><h3>Cerebro</h3><p>Participa en el pensamiento, la memoria, el aprendizaje, la interpretación de los sentidos y los movimientos voluntarios.</p><span class="tag">Pensar y aprender</span></article>
+  <article class="info-card"><span class="emoji">⚖️</span><h3>Cerebelo</h3><p>Ayuda a coordinar los movimientos, mantener el equilibrio y ajustar la postura.</p><span class="tag">Equilibrio y coordinación</span></article>
+  <article class="info-card"><span class="emoji">🔗</span><h3>Tronco encefálico</h3><p>Conecta el encéfalo con la médula espinal y participa en funciones automáticas esenciales, como la respiración y el ritmo cardíaco.</p><span class="tag">Funciones automáticas</span></article>
+  <article class="info-card"><span class="emoji">🛤️</span><h3>Médula espinal</h3><p>Comunica el encéfalo con gran parte del cuerpo y participa en respuestas rápidas llamadas reflejos.</p><span class="tag">Comunicación y reflejos</span></article>
+ </div>
+ <h3 style="margin-top:24px">¿Cómo trabaja el SNC?</h3>
+ <div class="steps">
+  <div class="step"><strong>1. Recibe</strong>Los órganos de los sentidos detectan información del entorno.</div>
+  <div class="step"><strong>2. Procesa</strong>El sistema nervioso interpreta la información y la integra.</div>
+  <div class="step"><strong>3. Responde</strong>Envía señales que ayudan a coordinar una respuesta del cuerpo.</div>
+ </div>
+</section>
+
+<section class="section" id="diagrama">
+ <div class="kicker">02 · Observa y explora</div><h2>Diagrama interactivo del SNC</h2>
+ <p class="muted">Selecciona cada estructura para conocer su función. El esquema es educativo y simplificado; no representa la anatomía a escala.</p>
+ <div class="diagram-wrap">
+  <div class="diagram">
+   <svg viewBox="0 0 300 350" role="img" aria-label="Esquema simplificado del encéfalo y la médula espinal">
+    <path d="M83 102 C40 89 49 35 91 35 C107 5 160 16 166 39 C207 22 243 57 224 91 C248 120 217 148 183 145 L177 184 L130 184 L124 145 C102 144 79 130 83 102Z" fill="#c4b5fd" stroke="#6d28d9" stroke-width="3"/>
+    <path d="M135 56 C111 65 112 94 134 105 C112 119 119 143 146 146 C169 135 177 112 158 96 C176 79 160 57 135 56Z" fill="#f9a8d4" stroke="#be185d" stroke-width="2"/>
+    <path d="M178 120 C205 118 218 139 204 161 C193 176 177 174 165 161 L163 133Z" fill="#93c5fd" stroke="#1d4ed8" stroke-width="3"/>
+    <path d="M148 166 C145 192 150 220 148 247 C146 275 151 301 149 326" fill="none" stroke="#f59e0b" stroke-width="13" stroke-linecap="round"/>
+    <path d="M148 166 C145 192 150 220 148 247 C146 275 151 301 149 326" fill="none" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
+    <g fill="#172554" font-size="10" font-weight="bold"><text x="7" y="25">ENCÉFALO</text><text x="165" y="305">MÉDULA</text></g>
+    <g stroke="#64748b" stroke-width="1.5" fill="none"><path d="M90 70 L22 55"/><path d="M190 145 L260 177"/><path d="M149 190 L230 225"/></g>
+   </svg>
+   <small class="muted">Representación esquemática</small>
+  </div>
+  <div>
+   <button class="part-btn active" data-part="cerebro">🧠 Cerebro</button>
+   <button class="part-btn" data-part="cerebelo">⚖️ Cerebelo</button>
+   <button class="part-btn" data-part="tronco">🔗 Tronco encefálico</button>
+   <button class="part-btn" data-part="medula">🛤️ Médula espinal</button>
+   <div class="detail-panel" id="partDetail" aria-live="polite"><h3>🧠 Cerebro</h3><p>Es la estructura más grande del encéfalo. Participa en el pensamiento, la memoria, el lenguaje, la interpretación de los sentidos y los movimientos voluntarios.</p><strong>Ejemplo:</strong> recordar una lección o decidir levantar la mano.</div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="neuronas">
+ <div class="kicker">03 · Conoce las células nerviosas</div><h2>Las neuronas y los mensajes del cuerpo</h2>
+ <p>Las <strong>neuronas</strong> son células especializadas en recibir y transmitir información. Se comunican mediante señales eléctricas y químicas. Las células gliales ayudan a proteger, nutrir y apoyar a las neuronas.</p>
+ <div class="grid">
+  <article class="info-card"><span class="emoji">🌿</span><h3>Dendritas</h3><p>Ramificaciones que reciben señales de otras células.</p></article>
+  <article class="info-card"><span class="emoji">🔵</span><h3>Cuerpo celular</h3><p>Contiene el núcleo y coordina las actividades de la neurona.</p></article>
+  <article class="info-card"><span class="emoji">⚡</span><h3>Axón</h3><p>Prolongación que conduce el impulso nervioso hacia otras células.</p></article>
+  <article class="info-card"><span class="emoji">🔗</span><h3>Sinapsis</h3><p>Zona de comunicación entre una neurona y otra célula.</p></article>
+ </div>
+ <div class="callout"><strong>Recuerda:</strong> el impulso nervioso viaja por la neurona y la comunicación con la siguiente célula ocurre en la sinapsis.</div>
+</section>
+
+<section class="section" id="actividades">
+ <div class="kicker">04 · Aprende jugando</div><h2>Actividades interactivas</h2>
+ <h3>Tarjetas de memoria: toca para descubrir</h3>
+ <p class="muted">Lee la pregunta y toca la tarjeta para ver la respuesta.</p>
+ <div class="grid">
+  <div class="flash" tabindex="0" role="button" aria-label="Voltear tarjeta sobre el cerebro"><div class="flash-inner"><div class="face"><small>¿Qué estructura participa en el aprendizaje?</small><strong>👆 Toca para descubrir</strong></div><div class="face back"><strong>El cerebro</strong><span>Interviene en el pensamiento, la memoria y el aprendizaje.</span></div></div></div>
+  <div class="flash" tabindex="0" role="button" aria-label="Voltear tarjeta sobre el cerebelo"><div class="flash-inner"><div class="face"><small>¿Qué estructura ayuda al equilibrio?</small><strong>👆 Toca para descubrir</strong></div><div class="face back"><strong>El cerebelo</strong><span>Coordina movimientos y ayuda a mantener la postura.</span></div></div></div>
+  <div class="flash" tabindex="0" role="button" aria-label="Voltear tarjeta sobre la médula espinal"><div class="flash-inner"><div class="face"><small>¿Qué estructura participa en los reflejos?</small><strong>👆 Toca para descubrir</strong></div><div class="face back"><strong>La médula espinal</strong><span>Conduce información y participa en respuestas reflejas.</span></div></div></div>
+ </div>
+ <h3 style="margin-top:25px">Reto: identifica la función</h3>
+ <div class="activity"><strong>Si una persona quiere mantener el equilibrio al caminar, ¿qué estructura ayuda especialmente?</strong><div class="choices"><button data-answer="cerebelo">Cerebelo</button><button data-answer="cerebro">Cerebro</button><button data-answer="medula">Médula espinal</button></div><div class="feedback" id="activityFeedback" aria-live="polite"></div></div>
+ <div class="activity"><strong>Cuando retiras rápidamente la mano de algo muy caliente, ¿qué estructura participa en el acto reflejo?</strong><div class="choices"><button data-answer="tronco">Tronco encefálico</button><button data-answer="medula">Médula espinal</button><button data-answer="cerebelo">Cerebelo</button></div><div class="feedback" id="activityFeedback2" aria-live="polite"></div></div>
+</section>
+
+<section class="section" id="quiz">
+ <div class="kicker">05 · Comprueba lo que aprendiste</div><h2>🎯 Quiz: ¡pon a prueba tu conocimiento!</h2>
+ <p>Responde las cinco preguntas y presiona <strong>Calificar respuestas</strong> para conocer tu resultado.</p>
+ <div class="progress"><span id="progressBar"></span></div><small id="progressText" class="muted">0 de 5 preguntas respondidas</small>
+ <form id="quizForm">
+  <div class="quiz-q"><p>1. ¿Cuáles son las dos estructuras que forman el sistema nervioso central?</p>
+   <label class="option"><input type="radio" name="q1" value="a"> Los nervios y los músculos</label>
+   <label class="option"><input type="radio" name="q1" value="b"> El encéfalo y la médula espinal</label>
+   <label class="option"><input type="radio" name="q1" value="c"> El corazón y el cerebro</label></div>
+  <div class="quiz-q"><p>2. ¿Qué estructura participa especialmente en el equilibrio y la coordinación?</p>
+   <label class="option"><input type="radio" name="q2" value="a"> El cerebelo</label>
+   <label class="option"><input type="radio" name="q2" value="b"> La médula espinal</label>
+   <label class="option"><input type="radio" name="q2" value="c"> La piel</label></div>
+  <div class="quiz-q"><p>3. ¿Cuál es una función importante de la médula espinal?</p>
+   <label class="option"><input type="radio" name="q3" value="a"> Producir hormonas digestivas</label>
+   <label class="option"><input type="radio" name="q3" value="b"> Filtrar la sangre</label>
+   <label class="option"><input type="radio" name="q3" value="c"> Comunicar el encéfalo con el cuerpo y participar en reflejos</label></div>
+  <div class="quiz-q"><p>4. ¿Qué parte del encéfalo participa en funciones automáticas como la respiración?</p>
+   <label class="option"><input type="radio" name="q4" value="a"> El cerebelo</label>
+   <label class="option"><input type="radio" name="q4" value="b"> El tronco encefálico</label>
+   <label class="option"><input type="radio" name="q4" value="c"> La corteza de la mano</label></div>
+  <div class="quiz-q"><p>5. ¿Cuál de estas actividades está relacionada con el cerebro?</p>
+   <label class="option"><input type="radio" name="q5" value="a"> Pensar, aprender y recordar</label>
+   <label class="option"><input type="radio" name="q5" value="b"> Bombear sangre</label>
+   <label class="option"><input type="radio" name="q5" value="c"> Producir bilis</label></div>
+  <div class="quiz-actions"><button class="action" type="submit">✨ Calificar respuestas</button><button class="action secondary" type="reset" id="retry">↻ Volver a intentar</button></div>
+ </form>
+ <div id="quizResult" role="status" aria-live="polite"></div>
+</section>
+</main>
+<footer>🌈 Aprende, relaciona y descubre cómo funciona tu cuerpo. · Aplicación educativa</footer>
+<script>
+const partInfo={
+ cerebro:{title:"🧠 Cerebro",text:"Es la estructura más grande del encéfalo. Participa en el pensamiento, la memoria, el lenguaje, la interpretación de los sentidos y los movimientos voluntarios.",example:"recordar una lección o decidir levantar la mano."},
+ cerebelo:{title:"⚖️ Cerebelo",text:"Se encuentra en la parte posterior e inferior del encéfalo. Ayuda a coordinar los movimientos, mantener el equilibrio y ajustar la postura.",example:"mantener la estabilidad al caminar o coordinar movimientos al escribir."},
+ tronco:{title:"🔗 Tronco encefálico",text:"Conecta el encéfalo con la médula espinal. Participa en funciones automáticas esenciales, como la respiración, el ritmo cardíaco y la deglución.",example:"regular procesos que continúan mientras dormimos."},
+ medula:{title:"🛤️ Médula espinal",text:"Es una estructura alargada protegida por la columna vertebral. Lleva información entre el encéfalo y el cuerpo y participa en los actos reflejos.",example:"retirar rápidamente la mano ante un estímulo muy caliente."}
+};
+document.querySelectorAll(".part-btn").forEach(btn=>btn.addEventListener("click",()=>{
+ document.querySelectorAll(".part-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+ const d=partInfo[btn.dataset.part];document.getElementById("partDetail").innerHTML=`<h3>${d.title}</h3><p>${d.text}</p><strong>Ejemplo:</strong> ${d.example}`;
+}));
+document.querySelectorAll(".flash").forEach(card=>{
+ const flip=()=>card.classList.toggle("flipped");
+ card.addEventListener("click",flip);card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();}});
+});
+document.querySelectorAll(".activity").forEach((activity,index)=>{
+ activity.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
+  const correct=index===0?"cerebelo":"medula",feedback=activity.querySelector(".feedback");
+  if(btn.dataset.answer===correct){feedback.textContent="¡Muy bien! Tu respuesta es correcta. 🎉";feedback.style.color="#15803d";}
+  else{feedback.textContent="Inténtalo de nuevo. Piensa en la función de cada estructura. 💡";feedback.style.color="#b45309";}
+ }));
+});
+const form=document.getElementById("quizForm"),result=document.getElementById("quizResult"),bar=document.getElementById("progressBar"),progressText=document.getElementById("progressText");
+const answers={q1:"b",q2:"a",q3:"c",q4:"b",q5:"a"};
+function updateProgress(){const count=Object.keys(answers).filter(q=>form.querySelector(`input[name="${q}"]:checked`)).length;bar.style.width=(count/5*100)+"%";progressText.textContent=`${count} de 5 preguntas respondidas`;}
+form.addEventListener("change",updateProgress);
+form.addEventListener("submit",e=>{
+ e.preventDefault();let score=0,unanswered=0;
+ Object.entries(answers).forEach(([q,a])=>{const chosen=form.querySelector(`input[name="${q}"]:checked`);if(!chosen)unanswered++;else if(chosen.value===a)score++;});
+ result.style.display="block";
+ if(unanswered){result.innerHTML=`Te falta${unanswered===1?"":"n"} responder ${unanswered} pregunta${unanswered===1?"":"s"}. Completa el cuestionario para obtener tu calificación.`;result.scrollIntoView({behavior:"smooth",block:"nearest"});return;}
+ const message=score===5?"¡Excelente! Dominas muy bien el tema. 🏆":score>=3?"¡Buen trabajo! Repasa las respuestas para seguir aprendiendo. 🌟":"¡Sigue practicando! Revisa las secciones de aprendizaje y vuelve a intentarlo. 💪";
+ result.innerHTML=`<h3>Tu resultado: ${score} de 5 (${score*20}%)</h3><p>${message}</p><p>${score===5?"¡Has contestado correctamente todas las preguntas!": "Puedes revisar el contenido y volver a intentar el cuestionario."}</p>`;
+ result.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+form.addEventListener("reset",()=>{setTimeout(()=>{result.style.display="none";result.innerHTML="";updateProgress();},0);});
+updateProgress();
+</script>
+</body>
+</html>
